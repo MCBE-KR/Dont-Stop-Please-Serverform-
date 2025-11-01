@@ -22,8 +22,9 @@
 - [clip_children으로 불필요한 하위 요소 잘라내기](solutions/clip_children.md)
 - [stack_panel를 이용하여 패널 삭제하기](solutions/delete_by_stack_panel.md)
 - [버튼 패널 하나로 모든 것을 처리하기](solutions/everything_by_onebtn.md)
+- 뭔가 더 있었는데 아오...
 
-<b>이 해결책들은 bedrock addons와 bedrock wiki에서 가져온 것이나 따로 직접 연구된 것들이며 절대 완벽하지 않습니다</b>
+<b>이 내용은 bedrock addons와 bedrock wiki에서 가져온 것이나 따로 직접 연구된 것들이며 절대 완벽하지 않습니다</b>
 
 <b>이 설명들은 모두 최적화를 위한 것들이기 때문에 서버폼 자체에 대한 지식은 제공하지 않습니다</b>
 
