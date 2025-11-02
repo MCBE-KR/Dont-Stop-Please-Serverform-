@@ -14,7 +14,7 @@
     "bindings": [
         {
             "binding_type": "view",
-            "source_property_name": "(<폼 표시 조건식> * 1) * 1)",
+            "source_property_name": "((<폼 표시 조건식> * 1) * 1)",
             "target_property_name": "#collection_length"
         }
     ]
