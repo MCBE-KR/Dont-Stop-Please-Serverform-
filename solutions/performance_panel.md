@@ -87,5 +87,5 @@ ignored랑 requires는 바인딩을 못 쓰지만 `#collection_length`는 바인
 - `$condition`은 폼 제목이랑 **완전히 같아야** 한다. `=` 비교라서 `ll<guild`랑 `ll<guildwar`가 안 겹친다.
   - 접두사 검사(`((#title_text - 'll<') = #title_text)`)로 바꾸면 겹치니까 조심
 - 이 안에 들어간 패널에서는 **stack_panel로 짠 버튼 목록이 사라진다.** 버튼 컬렉션 바인딩이 제대로 안 들어온다.
-  - 그래서 버튼 배치는 grid로 해야한다 → [grid로 버튼 배치하기](grid_placement.md)
+  - 그래서 버튼 배치는 grid로 해야한다 → [grid 마커 기법](grid_marker.md)
 - 폼을 하나 추가할 때마다 `_ui_defs.json`, factory의 `control_ids`, 깔아두는 목록 세군데를 같이 고쳐야 함

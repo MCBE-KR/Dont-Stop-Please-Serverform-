@@ -1,4 +1,4 @@
-# grid로 버튼 배치하기
+# grid 마커 기법
 [◀](../README.md)
 
 [performance_panel](performance_panel.md) 안에 넣은 패널에서는 stack_panel로 짠 버튼 목록이 사라진다.
@@ -7,6 +7,54 @@ stack_panel이나 factory 슬롯에서는 안 된다.
 
 그래서 버튼은 grid를 조작해서 배치한다.
 이게 사라지는 현상도 해결하고 최적화에도 꽤 효과가 있다.
+
+### stack_panel + factory 대신 grid
+보통 버튼 하나를 원하는 자리에 놓으려고 이런 걸 많이 쓴다.
+```json
+"global_dynamic": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "factory": {
+        "name": "buttons",
+        "control_name": "$control"
+    },
+    "collection_name": "form_buttons",
+    "bindings": [
+        {
+            "binding_name": "#form_button_length",
+            "binding_name_override": "#collection_length"
+        }
+    ]
+}
+```
+이걸 grid로 바꾼다.
+```json
+"global_grid_in": {
+    "type": "panel",
+    "size": [0, 0],
+    "controls": [
+        { "panel@$control": {} }
+    ]
+},
+
+"global_grid": {
+    "type": "grid",
+    "grid_dimensions": [100, 1],
+    "grid_item_template": "test.global_grid_in",
+    "collection_name": "form_buttons"
+}
+```
+- 셀 크기가 [0, 0]이라 모든 버튼이 한 점에 겹친다.
+- 셀 안의 `$control`은 버튼 텍스트를 보고 자기 버튼일 때만 보인다.
+```json
+{
+    "binding_type": "view",
+    "source_property_name": "(#text = 'exit')",
+    "target_property_name": "#visible"
+}
+```
+- 쓸 때는 `"close@test.global_grid": { "$control": "test.exit_button", "anchor_from": "top_right", ... }` 이런 식으로 위치만 잡아주면 된다.
+- stack_panel + factory 비용이 빠지고, 컬렉션 바인딩도 grid 안이라 제대로 들어온다.
 
 ### 버튼 하나당 grid 하나
 - 서버폼의 `form_buttons` grid는 무조건 0번 버튼부터 채운다.
@@ -42,8 +90,7 @@ stack_panel이나 factory 슬롯에서는 안 된다.
 - 나머지 위쪽 3줄은 잘려서 안 보임
 
 ### 마커로 엉뚱한 버튼 막기
-- 서버는 버튼을 **항상 같은 순서로** 보낸다. 빈 자리는 빈 버튼으로 채움
-- 버튼 텍스트 앞에 안보이는 색 코드 조합(`§g§u§a§r` 같은거)을 마커로 붙인다.
+- 버튼 텍스트 앞에 안보이는 색 코드 조합(`§g§u§a§r` 같은거)이 마커로 붙어 들어온다고 치자.
 - 슬롯은 자기 마커가 있을 때만 그린다.
 ```json
 "marked": {
@@ -71,10 +118,8 @@ stack_panel이나 factory 슬롯에서는 안 된다.
 - [버튼 패널 하나로 모든 것을 처리하기](everything_by_onebtn.md)에서 말한 거의 그 구조다.
 - 팩토리 여러개 대신 grid 셀 하나에 버튼 패널 하나만 쓰고, 마커로 자리를 정한다.
 - 화면 밖으로 밀려난 줄은 clip_children으로 잘리니까 그릴 게 줄어든다.
-- 버튼 동작은 몇번째 버튼인지가 아니라 서버에서 버튼에 붙인 데이터로 고르면 순서가 밀려도 안전함
 
 ### 주의할 점
 - i번 슬롯은 0 ~ i번 줄을 다 만든다. 잘려서 안 보일 뿐이다.
-- 그래서 버튼 번호가 커질수록 셀이 많아진다. 목록은 한 페이지 10칸 정도로 끊어서 보내는 게 좋다.
+- 그래서 버튼 번호가 커질수록 셀이 많아진다. 한 화면에 쓰는 슬롯 수를 적게 잡는 게 좋다.
 - 슬롯이 많아지면 손으로 쓰다간 미친다. 스크립트로 json을 뽑는 걸 추천
-- 슬롯 번호가 json이랑 서버 코드 두군데에 있으니 둘이 어긋나지 않게 조심
