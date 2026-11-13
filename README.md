@@ -18,6 +18,8 @@
 - ignore requires가 작동하면 직빵으로 해결인데 모장이 해줄리가 없죠~
 
 ## 최적화 솔루션
+아래 해당 기술들의 실 효과는 [루미너스 원더러스트](https://discord.gg/EWtTBY2nTR)에서 확인하실 수 있습니다
+
 - [low_frequency_rendering](solutions/low_frequency_rendering.md)
 - [clip_children으로 불필요한 하위 요소 잘라내기](solutions/clip_children.md)
 - [stack_panel를 이용하여 패널 삭제하기](solutions/delete_by_stack_panel.md)
