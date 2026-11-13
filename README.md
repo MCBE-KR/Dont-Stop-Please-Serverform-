@@ -22,6 +22,8 @@
 - [clip_children으로 불필요한 하위 요소 잘라내기](solutions/clip_children.md)
 - [stack_panel를 이용하여 패널 삭제하기](solutions/delete_by_stack_panel.md)
 - [버튼 패널 하나로 모든 것을 처리하기](solutions/everything_by_onebtn.md)
+- [collection_panel로 안쓰는 폼 패널 지우기 (performance_panel)](solutions/performance_panel.md)
+- [grid로 버튼 배치하기](solutions/grid_placement.md)
 - 뭔가 더 있었는데 아오...
 
 ## 연구중
